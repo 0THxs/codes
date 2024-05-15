@@ -1,0 +1,83 @@
+algoritmo "byTH2.0"
+funcao buscar(nome_procurado: caractere): inteiro
+       inicio
+             para i de 0 ate qtd -1 faca
+                  se nome[i] = nome_procurado entao
+                     retorne i
+                  fimse
+             fimpara
+fimfuncao
+var
+
+   nome: vetor[0..5] de caractere
+   idade: vetor[0..5] de inteiro
+   i: inteiro
+   opcao: inteiro
+   qtd: inteiro
+   usuario: caractere
+   retorno: inteiro
+inicio
+
+repita
+      escreval("----Menu----")
+      escreval("1- Cadastrar novo usuario: ")
+      escreval("2- Listar usuarios: ")
+      escreval("3- Pesquisar usuarios: ")
+      escreval("4- deletar usuarios: ")
+      escreval("5- sair do sistema")
+      leia(opcao)
+      limpatela
+      escolha opcao
+              caso 1
+              escreval("Quantos usuarios voce quer cadastrar? ")
+              leia(qtd)
+                para i de 0 ate qtd -1 faca
+                   escreval("Digite seu nome: ")
+                   leia(nome[i])
+                   limpatela
+                   escreval("Digite a idade: ")
+                   leia(idade[i])
+                   limpatela
+                fimpara
+                
+              caso 2
+                   escreval("Listar usuarios: ")
+                     para i de 0 ate qtd -1 faca
+                          escreval("Nome: ", nome[i], " - ", "idade: ", idade[i])
+                     fimpara
+              caso 3
+                   escreval("Buscar usuarios: ")
+                   escreval("Digite o nome que deseja buscar: ")
+                   leia(usuario)
+                   retorno <- buscar(usuario)
+                           se retorno = -1 entao
+                              escreval("Usuario nao encontrado, tente novamente! ")
+                           senao
+                                escreval(Nome[retorno]," - ", idade[retorno])
+                           fimse
+                           
+              caso 4
+                   escreval("Deletar usuario: ")
+                   escreval("Digite o nome do usuario que deseja deletar: ")
+                   leia(usuario)
+                    retorno <- buscar(usuario)
+                    se retorno = -1 entao
+                        escreval("Usuario nao encontrado, tente novamente! ")
+                    senao
+
+               para i de retorno ate qtd - 2 faca
+                  nome[i] <- nome[i+1]
+                  idade[i] <- idade[i+1]
+               fimpara
+               qtd <- qtd - 1
+               escreval("Usuario deletado com sucesso!")
+            fimse
+
+                         caso 5
+                   escreval("saindo. ")
+
+fimescolha
+
+ate opcao = 5
+
+fimalgoritmo
