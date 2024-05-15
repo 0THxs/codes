@@ -1,0 +1,50 @@
+algoritmo "bublesort"
+procedimento desordenados()
+inicio
+      para i de 1 ate 5 faca
+           escreval("Desordenados: ",xvetor[i])
+      fimpara
+
+fimprocedimento
+
+procedimento ordenar()
+inicio
+      troca <- verdadeiro
+      enquanto troca=verdadeiro faca
+         troca <- falso
+           para i de 1 ate 4 faca
+                se xvetor[i] > xvetor[i+1] entao
+                   auxiliar <- xvetor[i]
+                   xvetor[i] <- xvetor[i+1]
+                   xvetor[i+1] <- auxiliar
+                   troca <- verdadeiro
+                fimse
+           fimpara
+      fimenquanto
+     para i de 1 ate 5 faca
+          escreval("Numeros ordenados: ", xvetor[i])
+     fimpara
+fimprocedimento
+
+
+var
+   xvetor: vetor [1..5] de inteiro
+   i, auxiliar: inteiro
+   troca: logico
+   
+
+
+inicio
+
+     para i de 1 ate 5 faca
+          escreva("Digite um numero: ")
+          leia(xvetor[i])
+      fimpara
+      
+      //desordenados
+        desordenados()
+
+      //ordenados
+        ordenar()
+
+fimalgoritmo
