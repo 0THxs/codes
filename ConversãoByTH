@@ -1,0 +1,65 @@
+algoritmo "conversaoBYTH"
+funcao dolar(quantidade:real):real
+inicio
+      caso  1 entao
+            retorne quantidade * 5.07
+
+fimfuncao
+
+funcao euro(quantidade:real):real
+inicio
+      caso = 1 entao
+           retorne quantidade * 5.50
+
+fimfuncao
+
+funcao libra(quantidade:real):real
+inicio
+      caso 1 entao
+           retorne quantidade * 6.40
+
+fimfuncao
+
+
+var
+opcao:inteiro
+resultado, quantidade: real
+inicio
+repita
+      escreval("===========================")
+      escreval("====CONVERSOR DE MOEDAS====")
+      escreval("===========================")
+      escreval("1- Dolar")
+      escreval("2- Euro")
+      escreval("3- Libra")
+      escreval("4- Cancelar")
+      leia(opcao)
+      escolha opcao
+      
+      caso 1
+           escreval("Digite o valor à ser convertido: ")
+           leia(quantidade)
+           
+           resultado <- dolar(quantidade)
+           escreval("Valor convertido: ", resultado)
+      
+      caso 2
+           escreval("Digite o valor à ser convertido: ")
+           leia(quantidade)
+           
+           resultado <- euro(quantidade)
+           escreval("Valor convertido: ", resultado)
+           
+      caso 3
+          escreval("Digite o valor à ser convertido: ")
+           leia(quantidade)
+           
+           resultado <- libra(quantidade)
+           escreval("Valor convertido: ", resultado)
+           
+      caso 4
+           escreval("Saindo.")
+      fimescolha
+      
+ate opcao =  4
+fimalgoritmo
