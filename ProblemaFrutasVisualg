@@ -1,0 +1,51 @@
+Algoritmo "semnome"
+// 
+// Professor   : Sabrina Bet 
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Nome do(a) aluno(a)
+// Data atual  : 09/04/2024
+Var
+qtdmaca, qtdmorango, qtdfruta: real
+total_maca, total_morango, valor_total: real
+desconto: real
+
+
+Inicio
+// Seção de Comandos, procedimento, funções, operadores, etc... 
+
+escreval("Informe a quantidade de maçãs")
+leia(qtdmaca)
+
+escreval("Informe a quantidade de morango")
+leia(qtdmorango)
+
+//Calcular Valor total Maça.
+se qtdmaca < 5 entao
+   total_maca <- qtdmaca * 1.80
+senao
+   total_maca <- qtdmaca * 1.50
+fimse
+
+//Calcular Valor Total do Morango.
+se qtdmorango < 5 entao
+   total_morango <- qtdmorango * 2.50
+senao
+   total_morango <- qtdmorango * 2.20
+fimse
+
+//Quantidade total de frutas
+qtdfruta <- qtdmaca + qtdmorango
+escreval("Quantidade de Frutas: ", qtdfruta)
+
+//Valor total da compra
+valor_total <- total_maca + total_morango
+escreval("Valor Total Compra: R$", valor_total)
+
+//Verificar se tem desconto
+se (qtdfruta > 8) OU (valor_total > 25) entao
+   desconto <- (valor_total * 10 / 100)  //2,50
+   valor_total <- valor_total - desconto  // 25 - 2,50
+   escreval("Você recebeu um desconto de 10%: Preço final R$", valor_total)
+fimse
+
+Fimalgoritmo
