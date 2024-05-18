@@ -1,0 +1,45 @@
+
+procedimento consulta_aviao()
+var
+  aviao_consulta: inteiro
+  encontrado: logico
+inicio
+  encontrado <- falso
+  escreval("...CONSULTA DE AVIÃO...")
+  escreval("Informe o número do avião que deseja consultar:")
+  leia(aviao_consulta)
+
+  para i de 0 ate 3 faca
+    se aviao[i] = aviao_consulta entao
+       escreval("Avião encontrado! Nr. Avião: ", aviao_consulta, " Assentos disponíveis: ", assentos[i])
+       encontrado <- verdadeiro
+    fimse
+  fimpara
+
+  se nao encontrado entao
+     escreval("Avião não encontrado.")
+  fimse
+fimprocedimento
+
+//OPCAO 5
+procedimento consulta_passageiro()
+var
+  passageiro_consulta: caractere
+  encontrado: logico
+inicio
+  encontrado <- falso
+  escreval("...CONSULTA DE PASSAGEIRO...")
+  escreval("Informe o nome do passageiro que deseja consultar:")
+  leia(passageiro_consulta)
+
+  para i de 0 ate 19 faca
+    se checkin[i].passageiro = passageiro_consulta entao
+       escreval("Passageiro encontrado! Nr. Avião: ", checkin[i].nr_aviao, " Nome do Passageiro: ", checkin[i].passageiro)
+       encontrado <- verdadeiro
+    fimse
+  fimpara
+
+  se nao encontrado entao
+     escreval("Passageiro não encontrado.")
+  fimse
+fimprocedimento
