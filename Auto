@@ -1,0 +1,124 @@
+from time import sleep
+from docx import Document
+import os
+
+#repito os passos 4 e 5 ate chegar aos ultimos 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+driver = webdriver.Chrome()
+#https://contabil-devaprender.netlify.app/
+driver.get('https://contabil-devaprender.netlify.app/')
+#preencher email, senha, e entrar
+campo_email = driver.find_element(By.XPATH,"//input[@type='email']")
+sleep(2)
+campo_email.click()
+campo_email.send_keys('thigo111paiva@gmail.com')
+sleep(2)
+campo_senha = driver.find_element(By.XPATH,"//input[@type='password']")
+sleep(2)
+campo_senha.click()
+campo_senha.send_keys('THxs')
+sleep(2)
+campo_logar = driver.find_element(By.XPATH,'//button[@class="btn btn-primary w-100"]')
+campo_logar.click()
+sleep(4)
+#acessar  aba "balanço patrimonial'
+btt_balanço = driver.find_element(By.XPATH,'//a[@class="btn btn-primary mt-auto"]')
+btt_balanço.click()
+sleep(3)
+
+
+def inserir_valores_de_documentos_word(caminho_arquivo_word):
+
+    #extrair os arquivos word 
+    #preencher os campos com os valores extraidos do word
+    caminho_arquivo = r'C:\Users\thigo\OneDrive\Área de Trabalho\Automação\relatorios\Relatorio_Contabilidade_Delícias_Foodie.docx'
+    doc = Document(caminho_arquivo)
+    ativo_circulante = ''
+    caixa_equivalentes = ''
+    contasA_receber = ''
+    estoques = ''
+    ativo_nao_circulante = ''
+    Imobilizado = ''
+    Intangível = ''
+    Total_do_Ativo = ''
+
+    for tabela in doc.tables:
+        for linha in tabela.rows:
+            if 'Ativo Circulante' in linha.cells[0].text.strip():
+                ativo_circulante = linha.cells[1].text.strip()
+            elif 'Caixa e Equivalentes' in linha.cells[0].text.strip():
+                caixa_equivalentes =  linha.cells[1].text.strip()
+            elif 'Contas a Receber' in linha.cells[0].text.strip():
+                contasA_receber = linha.cells[1].text.strip()
+            elif 'Estoques' in linha.cells[0].text.strip():
+                estoques = linha.cells[1].text.strip()
+            elif 'Ativo Não Circulante' in linha.cells[0].text.strip():
+                ativo_nao_circulante = linha.cells[1].text.strip()
+            elif 'Imobilizado' in linha.cells[0].text.strip():
+                Imobilizado = linha.cells[1].text.strip()
+            elif 'Intangível' in linha.cells[0].text.strip():
+                Intangível = linha.cells[1].text.strip()
+            elif 'Total do Ativo' in linha.cells[0].text.strip():
+                Total_do_Ativo = linha.cells[1].text.strip()
+
+
+    campo_ativo_circulante = driver.find_element(By.ID,"ativo_circulante")
+    sleep(2)
+    campo_ativo_circulante.click()
+    campo_ativo_circulante.send_keys(ativo_circulante)
+    
+
+    campo_caixa_equivalentes = driver.find_element(By.ID,"caixa_equivalentes")
+    sleep(2)
+    campo_caixa_equivalentes.click()
+    campo_caixa_equivalentes.send_keys(caixa_equivalentes)
+    
+
+
+    campo_contas_areceber = driver.find_element(By.ID,"contas_receber")
+    sleep(2)
+    campo_contas_areceber.click()
+    campo_contas_areceber.send_keys(contasA_receber)
+    
+
+    campo_estoques = driver.find_element(By.ID, "estoques")
+    sleep(2)
+    campo_estoques.click()
+    campo_estoques.send_keys(estoques)
+    
+
+    campo_ativos_nao_circulantes = driver.find_element(By.ID,"ativo_nao_circulante")
+    sleep(2)
+    campo_ativos_nao_circulantes.click()
+    campo_ativos_nao_circulantes.send_keys(ativo_nao_circulante)
+   
+
+    campo_imobilizado = driver.find_element(By.ID,"imobilizado")
+    sleep(2)
+    campo_imobilizado.click()
+    campo_imobilizado.send_keys(Imobilizado)
+   
+
+    campo_intangivel = driver.find_element(By.ID,"intangivel")
+    sleep(2)
+    campo_intangivel.click()
+    campo_intangivel.send_keys(Intangível)
+    
+
+    campo_total_ativo = driver.find_element(By.ID,"total_ativo")
+    sleep(2)
+    campo_total_ativo.click()
+    campo_total_ativo.send_keys(Total_do_Ativo)
+    
+    #extrair os arquivos word 
+    #preencher os campos com os valores extraidos do word 
+    #clicar em cadastrar
+    campo_cadastrar = driver.find_element(By.XPATH,'//button[@class="btn btn-primary"]')
+    campo_cadastrar.click()
+
+pasta_relatorios = (r'C:\Users\thigo\OneDrive\Área de Trabalho\Automação\relatorios')                         
+for nome_arquivo in os.listdir(pasta_relatorios):
+    if nome_arquivo.endswith('.docx'):
+        caminho_arquivo_word = os.path.join(pasta_relatorios,nome_arquivo)
+        inserir_valores_de_documentos_word(caminho_arquivo_word)
