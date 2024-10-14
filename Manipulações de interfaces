@@ -1,0 +1,55 @@
+import customtkinter as ctk
+
+# Função para abrir uma nova janela e fechar a atual
+def abrir_nova_janela():
+    root.destroy()
+    
+    nova_janela = ctk.CTk()
+    nova_janela.geometry("400x300")
+    nova_janela.title("Nova Janela Integrada")
+    
+    label = ctk.CTkLabel(nova_janela, text="Esta é a nova janela integrada!")
+    label.pack(pady=20)
+    
+    botao_fechar = ctk.CTkButton(nova_janela, text="Fechar", command=nova_janela.destroy)
+    botao_fechar.pack(pady=10)
+    
+    nova_janela.mainloop()
+
+# Função para destruir a janela
+def destruir_janela():
+    root.destroy()
+
+# Função para esconder a janela e abrir a secundária
+def abrir_janela_secundaria():
+    root.withdraw()
+    
+    janela_secundaria = ctk.CTkToplevel()
+    janela_secundaria.geometry("300x200")
+    janela_secundaria.title("Janela Secundária Integrada")
+    
+    label_secundaria = ctk.CTkLabel(janela_secundaria, text="Janela Secundária")
+    label_secundaria.pack(pady=20)
+    
+    botao_mostrar = ctk.CTkButton(janela_secundaria, text="Mostrar Janela Principal", command=lambda: [root.deiconify(), janela_secundaria.destroy()])
+    botao_mostrar.pack(pady=10)
+
+# Cria a janela principal
+root = ctk.CTk()
+root.geometry("500x400")
+root.title("Aplicação Integrada CustomTkinter")
+
+# Adiciona elementos na janela principal
+titulo = ctk.CTkLabel(root, text="Manipulação de Interfaces com CustomTkinter", font=("Helvetica", 16))
+titulo.pack(pady=20)
+
+botao_abrir_nova = ctk.CTkButton(root, text="Abrir Nova Janela", command=abrir_nova_janela)
+botao_abrir_nova.pack(pady=10)
+
+botao_destruir = ctk.CTkButton(root, text="Destruir Janela", command=destruir_janela)
+botao_destruir.pack(pady=10)
+
+botao_esconder = ctk.CTkButton(root, text="Esconder e Abrir Secundária", command=abrir_janela_secundaria)
+botao_esconder.pack(pady=10)
+
+root.mainloop()
